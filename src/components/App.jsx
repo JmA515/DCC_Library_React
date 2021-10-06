@@ -11,14 +11,26 @@ class App extends Component {
             {title: "The Black Prism", author: "Brent Weeks"}
         ];
         this.state = {
-            bookNumber: 1
+            bookNumber: 0
         };
+    }
+
+    goToNextBook = () => {
+        let tempBookNumber = this.state.bookNumber;
+        tempBookNumber++;
+        if(tempBookNumber === this.books.length){
+            tempBookNumber = 0;
+        }
+        this.setState({
+            bookNumber: tempBookNumber
+        });
     }
 
     render(){
         return(
             <div className = "container-fluid">
                 <TitleBar />
+                <div className = "row">
                 <div className = "col-md-4">
                     {/* Button here to move to previous book that was viewed */}
                 </div>
@@ -29,6 +41,8 @@ class App extends Component {
                 </div>
                 <div className = "col-md-4">
                     {/* Button here to move to next book to be viewed */}
+                    <button onClick = {this.goToNextBook}>Next Book</button>
+                </div>
                 </div>
             </div>
         )
